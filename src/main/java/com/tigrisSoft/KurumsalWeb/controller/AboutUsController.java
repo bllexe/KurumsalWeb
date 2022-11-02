@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.GeneratedValue;
-
 @RestController
 @RequestMapping(ApiPaths.AboutUs.CTRL)
 public class AboutUsController {
@@ -24,7 +22,7 @@ public class AboutUsController {
         return new GenericResponse("About add seccussfully...");
     }
 
-    @GetMapping("/get{id}")
+    @GetMapping("/get/{id}")
     ResponseEntity<AboutUs> getAbout(@PathVariable long id){
         return ResponseEntity.ok(aboutUsService.getAbout(id));
     }
@@ -36,7 +34,7 @@ public class AboutUsController {
     }
 
     @PutMapping("/update/{id}")
-    ResponseEntity<AboutUs> updateAboutUs(@PathVariable long id,AboutUsDto aboutUsDto){
+    ResponseEntity<AboutUs> updateAboutUs(@PathVariable long id,@RequestBody AboutUsDto aboutUsDto){
         return ResponseEntity.ok(aboutUsService.updateAboutUs(id,aboutUsDto));
     }
 

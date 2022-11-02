@@ -1,5 +1,6 @@
 package com.tigrisSoft.KurumsalWeb.entites;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,8 @@ import java.util.Date;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Project {
 
     @Id
@@ -20,8 +23,8 @@ public class Project {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
-    @ManyToOne()
-    private Staff staff;
+    /*@ManyToOne()
+    private Staff staff;*/
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private FileAttachment fileAttachment;

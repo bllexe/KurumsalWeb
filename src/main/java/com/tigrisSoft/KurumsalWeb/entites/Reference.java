@@ -1,9 +1,6 @@
 package com.tigrisSoft.KurumsalWeb.entites;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,13 +12,12 @@ public class Reference {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
-    private String imageUrl;
+    private String referenceName;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private FileAttachment fileAttachment;
 
 }

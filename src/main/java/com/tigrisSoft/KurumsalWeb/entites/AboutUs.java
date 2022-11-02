@@ -8,14 +8,19 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class AboutUs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String aboutContent;
+
     private String ourMission;
+
     private String ourVision;
+
     private String principles;
 
 }

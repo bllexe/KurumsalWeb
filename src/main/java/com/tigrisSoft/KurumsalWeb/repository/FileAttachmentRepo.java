@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Date;
 import java.util.List;
 
-public interface FileAttachmentRepo extends JpaRepository<FileAttachment,String> {
+public interface FileAttachmentRepo extends JpaRepository<FileAttachment,Long> {
 
     List<FileAttachment> findByDateBeforeAndProjectNull(Date date);
 }

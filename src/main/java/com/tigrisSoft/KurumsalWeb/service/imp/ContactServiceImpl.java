@@ -5,6 +5,11 @@ import com.tigrisSoft.KurumsalWeb.error.NotFoundException;
 import com.tigrisSoft.KurumsalWeb.repository.ContactRepository;
 import com.tigrisSoft.KurumsalWeb.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
 public class ContactServiceImpl implements ContactService {
 
     @Autowired
@@ -17,11 +22,11 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact getContact(long id) {
-        Contact inDb=contactRepository.getReferenceById(id);
-        if(inDb==null){
+        Optional<Contact> inDb=contactRepository.findById(id);
+        if(!inDb.isPresent()){
             throw new NotFoundException();
         }
-        return inDb;
+        return contactRepository.findById(id).get();
     }
 
     @Override
@@ -37,10 +42,11 @@ public class ContactServiceImpl implements ContactService {
     public Contact updateContact(long id, Contact contactUpdated) {
 
         Contact conDb=contactRepository.getReferenceById(id);
-        if (conDb !=null){
-            conDb.setAddress(contactUpdated.getAddress());
-            contactRepository.save(conDb);
+        if (conDb ==null){
+            throw new NotFoundException();
         }
-        throw new NotFoundException();
+        conDb.setAddress(contactUpdated.getAddress());
+        return contactRepository.save(conDb);
+
     }
 }

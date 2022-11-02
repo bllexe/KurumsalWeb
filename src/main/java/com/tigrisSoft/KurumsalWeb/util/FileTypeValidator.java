@@ -13,8 +13,6 @@ public class FileTypeValidator implements ConstraintValidator<FileType, String> 
     FileAttachmentServiceImpl fileService;
 
     String[] types;
-
-
     @Override
     public void initialize(FileType constraintAnnotation) {
         this.types = constraintAnnotation.types();

@@ -1,11 +1,15 @@
 package com.tigrisSoft.KurumsalWeb.entites;
 
 
+import com.tigrisSoft.KurumsalWeb.util.UniqueUsername;
 import lombok.Data;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import java.util.Date;
 import java.util.List;
 
@@ -20,17 +24,19 @@ public class Staff {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "surname")
+
     private String surname;
 
-    @Column(name = "username")
-    @NotNull
+    @NotNull(message = "{tigris.constraint.username.NotNull.message}")
+    @Size(min = 4,max = 32)
+    //@UniqueUsername
     private String username;
 
-    @Column(name = "password")
+    @NotNull
+    @Size(min = 8, max=255)
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message="{tigris.constraint.password.Pattern.message}")
     private String password;
 
-    @Column(name = "profile_image")
     private String profileImage;
 
     @Column(name = "create_date")
@@ -45,10 +51,8 @@ public class Staff {
     @Column(name = "workStatus")
     private boolean workStatus;
 
-    @OneToMany(mappedBy = "staff",cascade = CascadeType.REMOVE)
-    private List<Project> project;
+/*    @OneToMany(mappedBy = "staff",cascade = CascadeType.REMOVE)
+    private List<Project> project;*/
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    private AboutUs aboutUs;
 
 }

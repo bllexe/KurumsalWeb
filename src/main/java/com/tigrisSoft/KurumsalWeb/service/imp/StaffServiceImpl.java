@@ -9,6 +9,7 @@ import com.tigrisSoft.KurumsalWeb.service.StaffService;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 
@@ -29,6 +30,7 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public Staff createStaff(Staff staff) {
         //staff.setPassword(this.passwordEncoder.encode(staff.getPassword()));
+        staff.setCreateDate(new Date(System.currentTimeMillis()));
         return staffRepository.save(staff);
     }
 
@@ -53,7 +55,7 @@ public class StaffServiceImpl implements StaffService {
         Staff inDb=getByUserName(username);
         inDb.setName(updatedStaff.getName());
         inDb.setSurname(updatedStaff.getSurname());
-        inDb.setProfileImage(updatedStaff.getProfileImage());
+       //inDb.setProfileImage(updatedStaff.getProfileImage());
         inDb.setJob(updatedStaff.getJob());
         inDb.setAge(updatedStaff.getAge());
         inDb.setWorkStatus(updatedStaff.getWorksStatus());

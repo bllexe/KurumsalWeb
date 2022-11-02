@@ -17,7 +17,7 @@ public class ContactUs {
 
     private String phoneNumber;
 
-    private String firtname;
+    private String firstname;
 
     private String surname;
 

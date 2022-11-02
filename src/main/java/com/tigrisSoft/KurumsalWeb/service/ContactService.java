@@ -1,7 +1,9 @@
 package com.tigrisSoft.KurumsalWeb.service;
 
 import com.tigrisSoft.KurumsalWeb.entites.Contact;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface ContactService {
     void addContact(Contact contact);
 

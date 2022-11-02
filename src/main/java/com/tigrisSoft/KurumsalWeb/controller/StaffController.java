@@ -14,9 +14,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @RestController
-/*@Api(value = ApiPaths.StaffCtrl.CTRL)
-@RequestMapping(ApiPaths.StaffCtrl.CTRL)*/
-@RequestMapping("/staff")
+
+@RequestMapping(ApiPaths.StaffCtrl.CTRL)
 public class StaffController {
 
     @Autowired
@@ -55,6 +54,8 @@ public class StaffController {
     public StaffDto updateStaff(@PathVariable(value = "username") String username, @RequestBody StaffUpdateDto updatedUser){
         Staff staff=staffServiceimpl.updateStaff(username,updatedUser);
         return new StaffDto(staff);
+
+        //bu test edilemedi.
     }
 
     @DeleteMapping("/delete/{username}")
@@ -62,6 +63,5 @@ public class StaffController {
         staffServiceimpl.deleteStaff(username);
         return new GenericResponse("Staff delete succesfully...");
     }
-
 
 }

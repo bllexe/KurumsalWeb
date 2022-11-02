@@ -17,12 +17,12 @@ public class ContactController {
     ContactServiceImpl contactService;
 
     @PostMapping("/add")
-    GenericResponse addContact(Contact contact){
+    GenericResponse addContact(@RequestBody Contact contact){
         contactService.addContact(contact);
         return new GenericResponse("add contact seccussfully");
     }
 
-    @GetMapping("/get{id}")
+    @GetMapping("/get/{id}")
     ResponseEntity<Contact> getContact(@PathVariable long id){
          return ResponseEntity.ok(contactService.getContact(id));
 

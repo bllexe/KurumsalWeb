@@ -23,4 +23,7 @@ public class FileAttachment {
 
     @OneToOne
     private Project project;
+
+    @OneToOne
+    private Reference reference;
 }

@@ -6,7 +6,11 @@ import com.tigrisSoft.KurumsalWeb.error.NotFoundException;
 import com.tigrisSoft.KurumsalWeb.repository.AboutUsRepository;
 import com.tigrisSoft.KurumsalWeb.service.AboutUsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+@Service
 public class AboutUsServiceImpl implements AboutUsService {
 
     @Autowired
@@ -18,11 +22,11 @@ public class AboutUsServiceImpl implements AboutUsService {
 
     @Override
     public AboutUs getAbout(long id) {
-        AboutUs inDb=aboutUsRepository.getReferenceById(id);
-        if (inDb==null){
+        Optional<AboutUs> inDb=aboutUsRepository.findById(id);
+        if (!inDb.isPresent()){
              throw new NotFoundException();
         }
-        return inDb;
+        return aboutUsRepository.findById(id).get();
     }
 
     @Override
@@ -38,6 +42,9 @@ public class AboutUsServiceImpl implements AboutUsService {
     @Override
     public AboutUs updateAboutUs(long id, AboutUsDto aboutUsDto) {
        AboutUs inDb=aboutUsRepository.getReferenceById(id);
+       if (inDb==null){
+           throw new NotFoundException();
+       }
        inDb.setAboutContent(aboutUsDto.getAboutContent());
        inDb.setPrinciples(aboutUsDto.getPrinciples());
        inDb.setOurVision(aboutUsDto.getOurVision());

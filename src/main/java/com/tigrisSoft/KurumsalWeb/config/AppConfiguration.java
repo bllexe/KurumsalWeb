@@ -6,13 +6,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "kurumsalweb")
+@ConfigurationProperties(prefix = "tigris")
 public class AppConfiguration {
 
     private String uploadPath;
 
     private String profileStorage="profile";
-    private String attachmentStorage="attachment";
+    private String attachmentStorage="attachments";
 
     public String getProfileStoragePath() {
 

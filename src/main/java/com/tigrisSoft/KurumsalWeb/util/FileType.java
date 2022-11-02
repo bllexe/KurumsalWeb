@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = {FileTypeValidator.class})
 public @interface FileType {
 
-    String message() default "{dent-clinic.constraint.FileType.message}";
+    String message() default "{tigris.constraint.FileType.message}";
 
     Class<?>[] groups() default {};
 
